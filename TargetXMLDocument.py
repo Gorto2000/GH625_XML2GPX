@@ -9,6 +9,7 @@ class TargetXMLDocument(object):
     def createInitialTargetXMLDocument(self, fileTitle, startDateTime):
         initialXMLString = ("<gpx version=\"1.1\" xmlns=\"http://www.topografix.com/GPX/1/1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
                             " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\""
+                            " xmlns:gtpx=\"http://www.garmin.com/xmlschemas/TrackPointExtension/v1\""
                             " creator=\"GH625_XML2GPX by Christopher Thiele\">"
                             "<metadata>"
                             "<name>" + fileTitle + "</name>"

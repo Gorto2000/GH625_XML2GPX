@@ -9,6 +9,34 @@ class SourceFileError(Exception):
     def __init__(self, errorMessage):
         self.errorMessage = errorMessage
 
+# A source file looks like this:
+# <GH-625_Dataform>
+#   <trackHeader>
+#     <TrackID>517202011</TrackID>
+#     <TrackName>2011-5-1</TrackName>
+#     <StartTime>10:55:20</StartTime>
+#     <During>06:14:52</During>
+#     <TotalDist>33908</TotalDist>
+#     <Calories>543</Calories>
+#     ...
+#   </trackHeader>
+#   <trackLapMaster>
+#   ...
+#   </trackLapMaster>
+#   <trackLapPoints>
+#     <Sl_x0020_No>1</Sl_x0020_No>
+#     <Latitude>49.298392</Latitude>
+#     <Longitude>8.818915</Longitude>
+#     <Altitude>138</Altitude>
+#     <Speed>0.43</Speed>
+#     <Heart_x0020_Rate>0</Heart_x0020_Rate>
+#     <Interval_x0020_Time>0</Interval_x0020_Time>
+#     <Index>517202011</Index>
+#   </trackLapPoints>
+#   <trackLapPoints>
+#     <Sl_x0020_No>2</Sl_x0020_No>
+#   ...
+# </GH-625_Dataform>
 
 class SourceXMLDocument(object):
 
@@ -90,7 +118,8 @@ class SourceXMLDocument(object):
             self.trackPoints.append(convertedTrackPoint)
 
 
-    def buildDateTimeString(self, dateTime):
+    @staticmethod
+    def buildDateTimeString(dateTime):
         dateTimeString = dateTime.isoformat()
         if dateTimeString[19] == "+":
             return dateTimeString[:19] + ".000Z"
