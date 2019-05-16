@@ -37,16 +37,16 @@ class TargetXMLDocument(object):
     def addTrackPoints(self, trackPoints):
         for trackPoint in trackPoints:
             trackPointElement = self.targetXMLDocument.createElement("trkpt")
-            trackPointElement.setAttribute("lat", trackPoint[0])
-            trackPointElement.setAttribute("lon", trackPoint[1])
+            trackPointElement.setAttribute("lat", trackPoint["latitude"])
+            trackPointElement.setAttribute("lon", trackPoint["longitude"])
 
             elevationElement = self.targetXMLDocument.createElement("ele")
-            elevationTextNode = self.targetXMLDocument.createTextNode(trackPoint[2])
+            elevationTextNode = self.targetXMLDocument.createTextNode(trackPoint["altitude"])
             elevationElement.appendChild(elevationTextNode)
             trackPointElement.appendChild(elevationElement)
 
             timeElement = self.targetXMLDocument.createElement("time")
-            timeTextNode = self.targetXMLDocument.createTextNode(trackPoint[4])
+            timeTextNode = self.targetXMLDocument.createTextNode(trackPoint["trackPointDateTime"])
             timeElement.appendChild(timeTextNode)
             trackPointElement.appendChild(timeElement)
 

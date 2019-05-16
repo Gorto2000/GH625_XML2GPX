@@ -20,24 +20,24 @@ from SourceXMLDocument import SourceXMLDocument
 from SourceXMLDocument import SourceFileError
 from TargetXMLDocument import TargetXMLDocument
 
-def areCommandLineArgumentsCorrect():
+def areCommandLineArgumentsCorrect(arguments):
     # Either called like "gh625_xml2gpx -w path" or "gh625_xml2gpx path"
-    if len(argv) != 2 and len(argv) != 3:
+    if len(arguments) != 2 and len(arguments) != 3:
         print("Number of arguments not correct")
         return False
 
-    if len(argv) == 3 and argv[1] != "-w":
+    if len(arguments) == 3 and arguments[1] != "-w":
         print("Arguments not correct: \"-w\" expected as first argument")
         return False
 
     return True
 
 
-def getSearchExpressionFromCommandLineArguments():
-    if len(argv) == 2:
-        searchExpression = argv[1]
-    elif len(argv) == 3:
-        searchExpression = argv[2]
+def getSearchExpressionFromCommandLineArguments(arguments):
+    if len(arguments) == 2:
+        searchExpression = arguments[1]
+    elif len(arguments) == 3:
+        searchExpression = arguments[2]
     else:
         return ""
 
@@ -56,8 +56,8 @@ def getSearchExpressionFromCommandLineArguments():
     return searchExpression
 
 
-def getOverwriteSwitchFromCommandLineArguments():
-    if len(argv) == 3 and argv[1] == "-w":
+def getOverwriteSwitchFromCommandLineArguments(arguments):
+    if len(arguments) == 3 and arguments[1] == "-w":
         return True
     return False
 
@@ -96,9 +96,9 @@ def pathExists(searchPath):
 
 
 def main():
-    if areCommandLineArgumentsCorrect() == True:
-        searchExpression = getSearchExpressionFromCommandLineArguments()
-        overwriteSwitch = getOverwriteSwitchFromCommandLineArguments()
+    if areCommandLineArgumentsCorrect(argv) == True:
+        searchExpression = getSearchExpressionFromCommandLineArguments(argv)
+        overwriteSwitch = getOverwriteSwitchFromCommandLineArguments(argv)
         if searchExpression != "":
             filePaths = glob(searchExpression, recursive=True)
             for filePath in filePaths:

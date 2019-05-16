@@ -106,15 +106,16 @@ class SourceXMLDocument(object):
         trackPointDateTime = deepcopy(self.getStartDateTime())
 
         for trackPoint in trackPoints:
-            latitude = trackPoint.getElementsByTagName("Latitude")[0].firstChild.nodeValue
-            longitude = trackPoint.getElementsByTagName("Longitude")[0].firstChild.nodeValue
-            altitude = trackPoint.getElementsByTagName("Altitude")[0].firstChild.nodeValue
-            duration = float(trackPoint.getElementsByTagName("Interval_x0020_Time")[0].firstChild.nodeValue.replace(",", "."))
+            convertedTrackPoint = {}
+            convertedTrackPoint["latitude"] = trackPoint.getElementsByTagName("Latitude")[0].firstChild.nodeValue
+            convertedTrackPoint["longitude"] = trackPoint.getElementsByTagName("Longitude")[0].firstChild.nodeValue
+            convertedTrackPoint["altitude"] = trackPoint.getElementsByTagName("Altitude")[0].firstChild.nodeValue
+            convertedTrackPoint["duration"] = float(trackPoint.getElementsByTagName("Interval_x0020_Time")[0].firstChild.nodeValue.replace(",", "."))
 
-            durationTimeDelta = timedelta(seconds=duration)
+            durationTimeDelta = timedelta(seconds=convertedTrackPoint["duration"])
             trackPointDateTime += durationTimeDelta
+            convertedTrackPoint["trackPointDateTime"] = self.buildDateTimeString(trackPointDateTime)
 
-            convertedTrackPoint = (latitude, longitude, altitude, duration, self.buildDateTimeString(trackPointDateTime))
             self.trackPoints.append(convertedTrackPoint)
 
 
