@@ -110,6 +110,7 @@ class SourceXMLDocument(object):
             convertedTrackPoint["latitude"] = trackPoint.getElementsByTagName("Latitude")[0].firstChild.nodeValue
             convertedTrackPoint["longitude"] = trackPoint.getElementsByTagName("Longitude")[0].firstChild.nodeValue
             convertedTrackPoint["altitude"] = trackPoint.getElementsByTagName("Altitude")[0].firstChild.nodeValue
+            convertedTrackPoint["heartrate"] = trackPoint.getElementsByTagName("Heart_x0020_Rate")[0].firstChild.nodeValue
             convertedTrackPoint["duration"] = float(trackPoint.getElementsByTagName("Interval_x0020_Time")[0].firstChild.nodeValue.replace(",", "."))
 
             durationTimeDelta = timedelta(seconds=convertedTrackPoint["duration"])

@@ -34,6 +34,16 @@ class TargetXMLDocument(object):
         targetFile.close()
 
 
+    # A GPX track point looks like this (including the Garmin specific extension for the heart rate):
+    # <trkpt lat="37.7833760" lon="-122.4072760">
+    #   <ele>11.5</ele>
+    #   <time>2015-01-19T21:24:25Z</time>
+    #   <extensions>
+    #     <gtpx:TrackPointExtension>
+    #       <gtpx:hr>121</gtpx:hr>
+    #     </gtpx:TrackPointExtension>
+    #   </extensions>
+    # </trkpt>
     def addTrackPoints(self, trackPoints):
         for trackPoint in trackPoints:
             trackPointElement = self.targetXMLDocument.createElement("trkpt")
@@ -49,5 +59,15 @@ class TargetXMLDocument(object):
             timeTextNode = self.targetXMLDocument.createTextNode(trackPoint["trackPointDateTime"])
             timeElement.appendChild(timeTextNode)
             trackPointElement.appendChild(timeElement)
+
+            # Heart rate has to be put into the extension sub-element
+            extensionElement = self.targetXMLDocument.createElement("extensions")
+            gtpxExtensionElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gtpx:TrackPointExtension")
+            heartRateElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gtpx:hr")
+            heartRateTextNode = self.targetXMLDocument.createTextNode(trackPoint["heartrate"])
+            heartRateElement.appendChild(heartRateTextNode)
+            gtpxExtensionElement.appendChild(heartRateElement)
+            extensionElement.appendChild(gtpxExtensionElement)
+            trackPointElement.appendChild(extensionElement)
 
             self.trackSegment.appendChild(trackPointElement)
