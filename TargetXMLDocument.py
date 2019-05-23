@@ -8,8 +8,8 @@ class TargetXMLDocument(object):
 
     def createInitialTargetXMLDocument(self, fileTitle, startDateTime):
         initialXMLString = ("<gpx version=\"1.1\" xmlns=\"http://www.topografix.com/GPX/1/1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
-                            " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\""
-                            " xmlns:gtpx=\"http://www.garmin.com/xmlschemas/TrackPointExtension/v1\""
+                            " xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd\""
+                            " xmlns:gpxtpx=\"http://www.garmin.com/xmlschemas/TrackPointExtension/v1\""
                             " creator=\"GH625_XML2GPX by Christopher Thiele\">"
                             "<metadata>"
                             "<name>" + fileTitle + "</name>"
@@ -62,8 +62,8 @@ class TargetXMLDocument(object):
 
             # Heart rate has to be put into the extension sub-element
             extensionElement = self.targetXMLDocument.createElement("extensions")
-            gtpxExtensionElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gtpx:TrackPointExtension")
-            heartRateElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gtpx:hr")
+            gtpxExtensionElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gpxtpx:TrackPointExtension")
+            heartRateElement = self.targetXMLDocument.createElementNS("http://www.garmin.com/xmlschemas/TrackPointExtension/v1", "gpxtpx:hr")
             heartRateTextNode = self.targetXMLDocument.createTextNode(trackPoint["heartrate"])
             heartRateElement.appendChild(heartRateTextNode)
             gtpxExtensionElement.appendChild(heartRateElement)
