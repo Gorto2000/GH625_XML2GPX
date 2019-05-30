@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timezone
-from SourceXMLDocument import SourceXMLDocument
+from documents.SourceXMLDocument import SourceXMLDocument
 
 class TestSourceXMLDocument(unittest.TestCase):
 

@@ -14,5 +14,5 @@ uses the Garmin extension for GPX trackpoints to store the heart rate numbers
 form the original file.
 
 ## Unit Tests
-* `python Test_gh625_xml2gpx.py`
-* `python TestSourceXMLDocument.py`
+To execute all unit tests, use `python -m unittest` in the root folder of
+this project.

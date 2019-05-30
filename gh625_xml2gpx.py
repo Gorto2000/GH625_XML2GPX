@@ -16,9 +16,9 @@
 from glob import glob
 from sys import argv
 from os import path
-from SourceXMLDocument import SourceXMLDocument
-from SourceXMLDocument import SourceFileError
-from TargetXMLDocument import TargetXMLDocument
+from documents.SourceXMLDocument import SourceXMLDocument
+from documents.SourceXMLDocument import SourceFileError
+from documents.TargetXMLDocument import TargetXMLDocument
 
 def areCommandLineArgumentsCorrect(arguments):
     # Either called like "gh625_xml2gpx -w path" or "gh625_xml2gpx path"

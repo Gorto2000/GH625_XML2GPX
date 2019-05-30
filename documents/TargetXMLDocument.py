@@ -39,9 +39,9 @@ class TargetXMLDocument(object):
     #   <ele>11.5</ele>
     #   <time>2015-01-19T21:24:25Z</time>
     #   <extensions>
-    #     <gtpx:TrackPointExtension>
-    #       <gtpx:hr>121</gtpx:hr>
-    #     </gtpx:TrackPointExtension>
+    #     <gpxtpx:TrackPointExtension>
+    #       <gpxtpx:hr>121</gpxtpx:hr>
+    #     </gpxtpx:TrackPointExtension>
     #   </extensions>
     # </trkpt>
     def addTrackPoints(self, trackPoints):
