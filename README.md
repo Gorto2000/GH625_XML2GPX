@@ -1,5 +1,5 @@
 # GH625_XML2GPX
-Python converter that transforms XML tracks from GH-625 watches to GPX tracks
+Python converter that transforms XML tracks from GH-625 watches to GPX tracks.
 
 ## Usage
 `python gh625_xml2gpx.py [-w] path`
