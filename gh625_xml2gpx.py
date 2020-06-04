@@ -55,7 +55,7 @@ def getSearchExpressionFromCommandLineArguments(arguments):
 
     return searchExpression
 
-
+# If the user add the "-w" parameter, existing GPX files are overwritten
 def getOverwriteSwitchFromCommandLineArguments(arguments):
     if len(arguments) == 3 and arguments[1] == "-w":
         return True
